@@ -24,8 +24,8 @@ jobs:
 
       - name: Create a new branch from main and cherry-pick the PR commit
         run: |
-          git checkout -b pr-to-main-${{ env.PR_SHA }}
           git cherry-pick ${{ env.PR_SHA }}
+          git checkout -b pr-to-main-${{ env.PR_SHA }}
 
       - name: Push branch to remote
         run: git push origin pr-to-main-${{ env.PR_SHA }}
