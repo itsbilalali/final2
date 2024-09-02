@@ -33,13 +33,13 @@ jobs:
       - name: Create Pull Request from the PR commit to main
         id: create_pr
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
         run: |
           gh pr create --base main --head pr-to-main-${{ env.PR_SHA }} --title "Auto Merge: ${{ env.BRANCH_NAME }} to Main" --body "Automated PR to merge changes from ${{ env.BRANCH_NAME }} to main after passing QA."
 
       - name: Auto Merge the new Pull Request
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
         run: |
           gh pr merge pr-to-main-${{ env.PR_SHA }} --auto --squash --delete-branch
 
